@@ -28,8 +28,8 @@ def login(user: UserLogin):
     cursor.execute("SELECT * FROM users WHERE username = %s", (user.username,))
     user_data = cursor.fetchone()
     
-    if user_data and bcrypt.checkpw(user.password.encode('utf-8'), user_data[2].encode('utf-8')):  # Assuming password is at index 2
-        return UserResponse(id=user_data[0], username=user_data[1])  # Assuming id is at index 0
+    if user_data and bcrypt.checkpw(user.password.encode('utf-8'), user_data[2].encode('utf-8')):  
+        return UserResponse(id=user_data[0], username=user_data[1])  
     else:
         raise HTTPException(status_code=400, detail="Invalid credentials")
 
