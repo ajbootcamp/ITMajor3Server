@@ -30,12 +30,12 @@ class UserUpdate(BaseModel):
 class GoalBase(BaseModel):
     title: str
     description: Optional[str] = None
-    deadline: Optional[date] = None  # Keep as date
+    deadline: Optional[date] = None 
 
 class GoalCreate(GoalBase):
     @validator('deadline')
     def check_deadline(cls, value):
-        if value and value < date.today():  # Ensure deadline is today or in the future
+        if value and value < date.today(): 
             raise ValueError('Deadline must be today or in the future.')
         return value
 
